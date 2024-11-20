@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">App Recetas</string>
+    <string name="agregar_receta">Agregar Receta</string>
+    <string name="titulo_recetas">Recetas Asiáticas</string>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="titulo_bk">#FF1111</color>
+    <color name="btn_add">#3BF142</color>
+
+
+</resources>
