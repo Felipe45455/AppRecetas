@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomTextInput" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- Color del hint en todos los estados -->
+        <item name="hintTextColor">@color/black</item>
+        <!-- Color del texto en todos los estados -->
+        <item name="android:textColor">@color/black</item>
+        <!-- Color del hint cuando el campo está enfocado -->
+        <item name="android:textColorHint">@color/black</item>
+        <!-- Color del borde en todos los estados -->
+        <item name="boxStrokeColor">@color/text_input_stroke_color</item>
+        <!-- Fondo blanco semitransparente -->
+        <item name="boxBackgroundColor">#80FFFFFF</item>
+    </style>
+</resources>
