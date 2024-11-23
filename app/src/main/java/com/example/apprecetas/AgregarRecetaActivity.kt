@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -38,7 +39,13 @@ class AgregarRecetaActivity : AppCompatActivity() {
         enableEdgeToEdge()
         initializeViews()
         setupListeners()
+
+        // Configurar Toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolBar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
+
 
     private fun initializeViews() {
         imagenReceta = findViewById(R.id.ivImagenReceta)
@@ -72,6 +79,7 @@ class AgregarRecetaActivity : AppCompatActivity() {
                     this,
                     Manifest.permission.READ_MEDIA_IMAGES
                 ) == PackageManager.PERMISSION_GRANTED -> true
+
                 shouldShowRequestPermissionRationale(Manifest.permission.READ_MEDIA_IMAGES) -> {
                     Toast.makeText(
                         this,
@@ -80,6 +88,7 @@ class AgregarRecetaActivity : AppCompatActivity() {
                     ).show()
                     false
                 }
+
                 else -> {
                     ActivityCompat.requestPermissions(
                         this,
@@ -95,6 +104,7 @@ class AgregarRecetaActivity : AppCompatActivity() {
                     this,
                     Manifest.permission.READ_EXTERNAL_STORAGE
                 ) == PackageManager.PERMISSION_GRANTED -> true
+
                 shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE) -> {
                     Toast.makeText(
                         this,
@@ -103,6 +113,7 @@ class AgregarRecetaActivity : AppCompatActivity() {
                     ).show()
                     false
                 }
+
                 else -> {
                     ActivityCompat.requestPermissions(
                         this,
@@ -138,7 +149,10 @@ class AgregarRecetaActivity : AppCompatActivity() {
             addCategory(Intent.CATEGORY_OPENABLE)
         }
         try {
-            startActivityForResult(Intent.createChooser(intent, "Seleccionar imagen"), REQUEST_GALLERY)
+            startActivityForResult(
+                Intent.createChooser(intent, "Seleccionar imagen"),
+                REQUEST_GALLERY
+            )
         } catch (e: Exception) {
             Toast.makeText(
                 this,
@@ -161,7 +175,11 @@ class AgregarRecetaActivity : AppCompatActivity() {
                     intent.putExtra(MediaStore.EXTRA_OUTPUT, imagenUri)
                     startActivityForResult(intent, REQUEST_CAMERA)
                 } else {
-                    Toast.makeText(this, "No se pudo crear el archivo para la foto", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this,
+                        "No se pudo crear el archivo para la foto",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -174,7 +192,11 @@ class AgregarRecetaActivity : AppCompatActivity() {
             val storageDir = getExternalFilesDir(null)
             File.createTempFile(imageFileName, ".jpg", storageDir)
         } catch (e: Exception) {
-            Toast.makeText(this, "Error al crear archivo de imagen: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Error al crear archivo de imagen: ${e.message}",
+                Toast.LENGTH_SHORT
+            ).show()
             null
         }
     }
@@ -205,13 +227,15 @@ class AgregarRecetaActivity : AppCompatActivity() {
 
     private fun resizeImage(originalFile: File?): Uri? {
         if (originalFile == null || !originalFile.exists()) {
-            Toast.makeText(this, "Error: Archivo de imagen no encontrado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error: Archivo de imagen no encontrado", Toast.LENGTH_SHORT)
+                .show()
             return null
         }
 
         val bitmap = BitmapFactory.decodeFile(originalFile.path)
         if (bitmap == null) {
-            Toast.makeText(this, "Error: No se pudo decodificar la imagen", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error: No se pudo decodificar la imagen", Toast.LENGTH_SHORT)
+                .show()
             return null
         }
 
@@ -225,7 +249,11 @@ class AgregarRecetaActivity : AppCompatActivity() {
             outputStream.close()
             Uri.fromFile(resizedFile)
         } catch (e: Exception) {
-            Toast.makeText(this, "Error al guardar imagen redimensionada: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Error al guardar imagen redimensionada: ${e.message}",
+                Toast.LENGTH_SHORT
+            ).show()
             null
         }
     }
@@ -240,9 +268,11 @@ class AgregarRecetaActivity : AppCompatActivity() {
                             imagenUri = saveImageToInternalStorage(uri)
                             imagenReceta.setImageURI(imagenUri)
                         } ?: run {
-                            Toast.makeText(this, "No se pudo obtener la imagen", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "No se pudo obtener la imagen", Toast.LENGTH_SHORT)
+                                .show()
                         }
                     }
+
                     REQUEST_CAMERA -> {
                         if (photoFile != null) {
                             val resizedImageUri = resizeImage(photoFile)
@@ -250,7 +280,11 @@ class AgregarRecetaActivity : AppCompatActivity() {
                                 imagenUri = resizedImageUri
                                 imagenReceta.setImageURI(imagenUri)
                             } else {
-                                Toast.makeText(this, "Error al redimensionar la imagen", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Error al redimensionar la imagen",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     }
@@ -264,6 +298,7 @@ class AgregarRecetaActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun saveImageToInternalStorage(uri: Uri): Uri? {
         val inputStream = contentResolver.openInputStream(uri)
         val bitmap = BitmapFactory.decodeStream(inputStream)
@@ -288,4 +323,19 @@ class AgregarRecetaActivity : AppCompatActivity() {
         private const val REQUEST_GALLERY = 101
         private const val REQUEST_CAMERA = 102
     }
+
+    override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                // Finalizar la actividad y regresar a la anterior
+                finish()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }
+
+
