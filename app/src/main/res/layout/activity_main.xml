@@ -9,11 +9,11 @@
         android:id="@+id/toolBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#FF5722"
+        android:background="#B71C1C"
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:title="Contactos"
+        app:title="Recetas Asiáticas"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -26,25 +26,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
-
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@android:color/darker_gray"
-            android:dividerHeight="0.5dp">
-        </ListView>
-
-        <GridView
-            android:id="@+id/gridView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:numColumns="auto_fit"
-            android:columnWidth="120dp"
-            android:stretchMode="columnWidth"
-            android:horizontalSpacing="16dp"
-            android:verticalSpacing="16dp">
-        </GridView>
     </ViewSwitcher>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -53,7 +34,8 @@
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/background_bambu"/>
+        android:background="@drawable/background_bambu"
+        android:paddingTop="70dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAgregarReceta"

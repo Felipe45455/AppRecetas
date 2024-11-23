@@ -16,11 +16,10 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:background="#B71C1C"
             app:title="Nueva Receta"
-            android:layout_marginBottom="8dp"
             app:titleTextColor="@android:color/white" />
-
 
         <ImageView
             android:id="@+id/ivImagenReceta"

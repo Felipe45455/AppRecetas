@@ -89,5 +89,23 @@
             android:textColor="#000000"
             android:textSize="16sp" />
 
+        <Button
+            android:id="@+id/btnActualizarReceta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#B71C1C"
+            android:textColor="@color/white"
+            android:text="Actualizar Receta" />
+
+        <Button
+            android:id="@+id/btnEliminarReceta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#B71C1C"
+            android:textColor="@color/white"
+            android:text="Eliminar Receta" />
+
+
     </LinearLayout>
 </FrameLayout>
