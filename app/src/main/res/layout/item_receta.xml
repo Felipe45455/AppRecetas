@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="#B71C1C">
 
         <ImageView
             android:id="@+id/ivReceta"
@@ -27,6 +28,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
             android:textSize="18sp"
+            android:textColor="#FFFFFF"
             android:textStyle="bold"/>
     </LinearLayout>
 
