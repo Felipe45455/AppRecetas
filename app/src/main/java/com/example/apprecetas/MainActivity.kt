@@ -21,11 +21,32 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.rvRecetas)
         val fabAgregarReceta = findViewById<FloatingActionButton>(R.id.fabAgregarReceta)
 
+        setupRecyclerView()
 
+        fabAgregarReceta.setOnClickListener {
+            startActivityForResult(
+                Intent(this, AgregarRecetaActivity::class.java),
+                AGREGAR_RECETA_REQUEST
+            )
+        }
     }
 
+    private fun setupRecyclerView() {
+        adapter = RecetaAdapter(listaRecetas) { receta ->
+            val intent = Intent(this, DetalleRecetaActivity::class.java).apply {
+                putExtra(EXTRA_NOMBRE, receta.nombre)
+                putExtra(EXTRA_INGREDIENTES, receta.ingredientes)
+                putExtra(EXTRA_PASOS, receta.pasos)
+                putExtra(EXTRA_IMAGEN_URI, receta.imagenUri)
+            }
+            startActivity(intent)
+        }
 
-
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            this.adapter = this@MainActivity.adapter
+        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
