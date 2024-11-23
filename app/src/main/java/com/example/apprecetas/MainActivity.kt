@@ -34,8 +34,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         adapter = RecetaAdapter(listaRecetas, { receta ->
+            val intent = Intent(this, DetalleRecetaActivity::class.java).apply {
+                putExtra(EXTRA_NOMBRE, receta.nombre)
+                putExtra(EXTRA_INGREDIENTES, receta.ingredientes)
+                putExtra(EXTRA_PASOS, receta.pasos)
+                putExtra(EXTRA_IMAGEN_URI, receta.imagenUri)
+            }
             startActivity(intent)
-        }, { receta -> eliminarReceta(receta) })
+        }, { receta -> editarReceta(receta) }, { receta -> eliminarReceta(receta) })
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -99,3 +105,4 @@ class MainActivity : AppCompatActivity() {
         const val EXTRA_IMAGEN_URI = "extra_imagen_uri"
     }
 }
+

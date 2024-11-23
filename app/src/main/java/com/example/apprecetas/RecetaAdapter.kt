@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 class RecetaAdapter(
     private val recetas: MutableList<Receta>,
     private val onItemClick: (Receta) -> Unit,
+    private val onEditClick: (Receta) -> Unit,
     private val onDeleteClick: (Receta) -> Unit
 ) : RecyclerView.Adapter<RecetaAdapter.RecetaViewHolder>() {
 
@@ -47,5 +48,22 @@ class RecetaAdapter(
     }
 
     override fun getItemCount() = recetas.size
+
+    fun removeReceta(receta: Receta) {
+        val position = recetas.indexOf(receta)
+        if (position != -1) {
+            recetas.removeAt(position)
+            notifyItemRemoved(position)
+        }
+    }
+
+    fun updateReceta(receta: Receta) {
+        val position = recetas.indexOf(receta)
+        if (position != -1) {
+            recetas[position] = receta
+            notifyItemChanged(position)
+        }
+    }
 }
+
 
