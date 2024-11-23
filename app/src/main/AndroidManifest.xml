@@ -27,9 +27,11 @@
         android:theme="@style/Theme.AppRecetas"
         tools:targetApi="31">
         <activity
-            android:name=".AgregarRecetaActivity"
+            android:name=".DetalleRecetaActivity"
             android:exported="false" />
-        <!-- FileProvider para manejar fotos de la cámara -->
+        <activity
+            android:name=".AgregarRecetaActivity"
+            android:exported="false" /> <!-- FileProvider para manejar fotos de la cámara -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
