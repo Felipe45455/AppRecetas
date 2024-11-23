@@ -12,13 +12,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:background="#B71C1C">
 
         <ImageView
             android:id="@+id/ivReceta"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_image_placeholder"/>
 
         <TextView
             android:id="@+id/tvNombreReceta"
@@ -27,7 +29,8 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="16dp"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

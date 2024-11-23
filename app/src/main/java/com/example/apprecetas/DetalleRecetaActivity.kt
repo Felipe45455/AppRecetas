@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import android.util.Log
+import androidx.activity.enableEdgeToEdge
 
 class DetalleRecetaActivity : AppCompatActivity() {
 
@@ -23,7 +24,7 @@ class DetalleRecetaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_receta)
-
+        enableEdgeToEdge()
         val nombre = intent.getStringExtra(MainActivity.EXTRA_NOMBRE)
         val ingredientes = intent.getStringExtra(MainActivity.EXTRA_INGREDIENTES)
         val pasos = intent.getStringExtra(MainActivity.EXTRA_PASOS)
